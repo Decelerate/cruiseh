@@ -1,0 +1,32 @@
+{
+  "name": "@decelerate/cruiseh",
+  "version": "0.1.0-alpha.1",
+  "license": "MIT",
+  "exports": {
+    ".": "./index.ts",
+    "./router": "./router.ts",
+    "./types": "./types.ts"
+  },
+  "publish": {
+    "include": [
+      "LICENSE",
+      "README.md",
+      "CONTRIBUTING.md",
+      "deno.json",
+      "index.ts",
+      "router.ts",
+      "types.ts"
+    ]
+  },
+  "tasks": {
+    "doc:gen": "deno doc --html --name=\"Cruiseh API\" ./index.ts",
+    "doc:dev": "deno run -A docs-dev-server.ts",
+    "doc:lint": "deno doc --lint index.ts"
+  },
+  "fmt": {
+    "exclude": [
+      "README.md"
+    ]
+  },
+  "lock": false
+}

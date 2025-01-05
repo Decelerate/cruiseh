@@ -1,0 +1,7 @@
+{
+  "tasks": {
+    "dev": "deno serve -A --watch main.ts"
+  },
+  "imports": {
+  }
+}
