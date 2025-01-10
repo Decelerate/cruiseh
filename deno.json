@@ -21,12 +21,17 @@
   "tasks": {
     "doc:gen": "deno doc --html --name=\"Cruiseh API\" ./index.ts",
     "doc:dev": "deno run -A docs-dev-server.ts",
-    "doc:lint": "deno doc --lint index.ts"
+    "doc:lint": "deno doc --lint index.ts",
+    "tsup": "deno run -A npm:tsup"
   },
   "fmt": {
     "exclude": [
       "README.md"
     ]
   },
-  "lock": false
+  "lock": false,
+  "imports": {
+    "tsup": "npm:tsup@^8.3.5",
+    "typescript": "npm:typescript@^5.7.3"
+  }
 }
