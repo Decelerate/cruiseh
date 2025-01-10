@@ -1,2 +1,4 @@
 .deno-neovim
 docs/
+node_modules/
+dist

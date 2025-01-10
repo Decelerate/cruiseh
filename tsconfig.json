@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "target": "esnext",
+    "module": "NodeNext",
+    "outDir": "./dist",
+    // "declarationDir": "./",
+    "moduleResolution": "nodenext",
+    "esModuleInterop": false,
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "skipLibCheck": true,
+    "allowImportingTsExtensions": true
+  },
+  "exclude": ["node_modules", "dist", "docs", "examples", "docs-dev-server.ts"]
+}

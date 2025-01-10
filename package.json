@@ -1,0 +1,53 @@
+{
+  "name": "@decelerate/cruiseh",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Decelerate/cruiseh.git"
+  },
+  "version": "0.1.0-alpha.5",
+  "license": "MIT",
+  "keywords": [
+    "cruiseh",
+    "decelerate",
+    "http",
+    "http-server",
+    "deno",
+    "rest",
+    "router",
+    "api"
+  ],
+  "exports": {
+    ".": "./dist/index.js",
+    "./router": "./dist/router.js"
+  },
+  "files": [
+    "LICENSE",
+    "README.md",
+    "CONTRIBUTING.md",
+    "dist/"
+  ],
+  "tsup": {
+    "entry": [
+      "index.ts",
+      "router.ts"
+    ],
+    "splitting": false,
+    "sourcemap": false,
+    "clean": true,
+    "dts": true,
+    "target": "node23",
+    "format": [
+      "cjs"
+    ]
+  },
+  "scripts": {
+    "build": "tsup",
+    "publish": "npm publish @decelerate/cruiseh --scope=decelerate --access=public"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.5",
+    "tsup": "^8.3.5",
+    "typescript": "^5.7.3",
+    "urlpattern-polyfill": "^10.0.0"
+  }
+}
