@@ -8,6 +8,10 @@ This library is made for "training" purpose but you can use it for small project
 
 Feel free to make a Pull request or issue if you want additional features, we don't bite ! 🧛
 
+> [!WARNING]
+> Only work with deno
+
+
 ## Features
 
 - Register routes for different HTTP methods (GET, POST, PUT, DELETE)

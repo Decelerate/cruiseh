@@ -3,5 +3,6 @@
     "dev": "deno serve -A --watch main.ts"
   },
   "imports": {
+    "@decelerate/cruiseh": "jsr:@decelerate/cruiseh@0.1.0-alpha.1"
   }
 }
