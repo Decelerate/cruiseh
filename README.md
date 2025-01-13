@@ -9,7 +9,7 @@ This library is made for "training" purpose but you can use it for small project
 Feel free to make a Pull request or issue if you want additional features, we don't bite ! 🧛
 
 > [!WARNING]
-> Only work with deno
+> Only work with deno runtime
 
 
 ## Features
@@ -22,7 +22,7 @@ Feel free to make a Pull request or issue if you want additional features, we do
 For now, the only way to use it is with JSR inside deno project
 
 ```bash
-deno install @decelerate/cruiseh
+deno add jsr:@decelerate/cruiseh
 ```
 
 ## Usage 

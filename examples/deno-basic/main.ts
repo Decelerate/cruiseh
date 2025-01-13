@@ -3,7 +3,7 @@ import { Router } from "@decelerate/cruiseh";
 const app = new Router();
 
 app.get("/", () => {
-  return new Response(JSON.stringify({ pouet: "ping" }), {
+  return new Response(JSON.stringify({ ping: "ping" }), {
     status: 200,
     headers: {
       "content-type": "application/json; charset=utf-8",
