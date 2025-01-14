@@ -29,9 +29,21 @@ app.post("/hello", async (req) => {
   }
 });
 
+// get id params from url
+app.get("/hello/:id", (_req, matchedRoute) => {
+  const id = matchedRoute?.pathname.groups.id;
+  const body = { id };
+
+  return new Response(JSON.stringify(body), {
+    status: 200,
+    headers: {
+      "content-type": "application/json; charset=utf-8",
+    },
+  });
+});
+
 export default {
   fetch(request: Request) {
-    console.log("oeoeoe");
     return app.handler(request);
   },
 } satisfies Deno.ServeDefaultExport;
