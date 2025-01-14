@@ -102,7 +102,9 @@ export class Router {
    */
   handler(request: Request): Response | Promise<Response> {
     const match =
-      this.#routes.filter((route) => route.pattern.exec(request.url))[0];
+      this.#routes.filter((route) =>
+        route.method === request.method && route.pattern.exec(request.url)
+      )[0];
 
     if (match) {
       try {

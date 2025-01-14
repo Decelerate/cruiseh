@@ -42,6 +42,26 @@ app.get("/hello/:id", (_req, matchedRoute) => {
   });
 });
 
+// from post request
+app.post("/hello/:id", async (req, matchedRoute) => {
+  let body;
+
+  try {
+    body = await req.json();
+    body.idParam = matchedRoute?.pathname.groups.id;
+    return new Response(JSON.stringify(body), {
+      status: 200,
+      headers: {
+        "content-type": "application/json; charset=utf-8",
+      },
+    });
+  } catch {
+    return new Response("No JSON body found.", {
+      status: 400,
+    });
+  }
+});
+
 export default {
   fetch(request: Request) {
     return app.handler(request);
