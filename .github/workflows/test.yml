@@ -1,0 +1,21 @@
+name: Tests
+on:
+  push:
+    branches: ["*"]
+  pull_request:
+    branches: ["*"]
+    
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup repo
+        uses: actions/checkout@v4
+      - name: Setup Deno
+        uses: denoland/setup-deno@v2
+        with:
+          deno-version: v2.x
+      - name: Fmt check
+        run: deno fmt --check
+      - name: Types check
+        run: deno check .
