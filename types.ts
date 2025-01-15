@@ -12,6 +12,7 @@ export enum HttpMethods {
 /**
  * Type representing a handler function that processes a request and returns a response.
  * @param {Request} request - The request object.
+ * @param {Route} match - The matched route object.
  * @returns {Response} - The response object.
  */
 export type Handler = (
@@ -30,3 +31,24 @@ export type Route = {
   method: HttpMethods | keyof typeof HttpMethods;
   handler: Handler;
 };
+
+/**
+ * Type representing middleware options.
+ * @property {string} path - The path to match.
+ * @property {HttpMethods | keyof typeof HttpMethods} method - The HTTP method to match.
+ */
+export type MiddlewareOptions = {
+  path?: string;
+  method?: HttpMethods | keyof typeof HttpMethods;
+};
+
+/**
+ * Type representing a middleware function that processes a request and calls the next middleware in the chain.
+ * @param {Request} request - The request object.
+ * @param {Function} next - The next middleware function in the chain.
+ * @returns {Response} - The response object.
+ */
+export type Middleware = (
+  request: Request,
+  next: () => Response | Promise<Response>,
+) => Response | Promise<Response>;

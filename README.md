@@ -15,6 +15,7 @@ Feel free to make a Pull request or issue if you want additional features, we do
 ## Features
 
 - Register routes for different HTTP methods (GET, POST, PUT, DELETE)
+- Middleware support
 - Simple and easy-to-use API
 
 ## Installation
@@ -39,9 +40,7 @@ const app = new Router();
 app.get("/hello", (request) => new Response("Hello world"));
 
 app.post("/hello", async (req) => {
-  const body = await req.json();
-
-  // your logic
+  const body = { message: "Message from body" };
 
   return new Response(JSON.stringify(body), {
     status: 200,
@@ -51,10 +50,10 @@ app.post("/hello", async (req) => {
   });
 });
 
-app.put("/hello", async (req) => {
-  const body = await req.json();
-
-  // your logic
+// With params
+app.get("/hello/:id", (_req, matchedRoute) => {
+  const id = matchedRoute?.pathname.groups.id;
+  const body = { id };
 
   return new Response(JSON.stringify(body), {
     status: 200,
@@ -64,7 +63,23 @@ app.put("/hello", async (req) => {
   });
 });
 
-app.delete("/hello", (request) => new Response("Hello world"));
+// Register middleware (active on all routes)
+app.use(async (req, next) => {
+  console.log(`Request made to: ${req.url}`);
+  return next();
+});
+
+// Register middleware (active on GET /hello and children routes)
+app.use(
+  async (req, next) => {
+    console.log(`Request made to: ${req.url}`);
+    return next();
+  },
+  {
+    path: "/hello",
+    method: "POST",
+  }
+);
 
 // Handle incoming request
 export default {
@@ -80,6 +95,10 @@ deno serve -A --watch server.ts
 ```
 
 ## API
+`use(middleware: Middleware, options?: MiddlewareOptions)`
+
+Registers a middleware function to be executed for every request.
+
 `get(path: string, handler: Handler)`
 
 Registers a GET route with the specified path and handler.

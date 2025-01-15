@@ -2,6 +2,35 @@ import { Router } from "@decelerate/cruiseh";
 
 const app = new Router();
 
+// Middleware for every routes
+app.use((_request, next) => {
+  console.log("Middleware everyware");
+  return next();
+});
+
+// Middleware for /hello and associate children like /hello/children/another-children
+app.use(
+  (_request, next) => {
+    console.log("Middleware /hello");
+    return next();
+  },
+  {
+    path: "/hello",
+  },
+);
+
+// Middleware for GET request inside /hello/:id and associate children children
+app.use(
+  (_request, next) => {
+    console.log("Middleware GET /hello/:id");
+    return next();
+  },
+  {
+    path: "/hello/:id",
+    method: "GET",
+  },
+);
+
 app.get("/", () => {
   return new Response(JSON.stringify({ ping: "ping" }), {
     status: 200,
