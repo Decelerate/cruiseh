@@ -17,7 +17,7 @@ export enum HttpMethods {
  */
 export type Handler = (
   request: Request,
-  matchedRoute: URLPatternResult | null,
+  matchedRoute: URLPattern,
 ) => Response | Promise<Response>;
 
 /**
