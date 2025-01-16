@@ -6,7 +6,7 @@ on:
     branches: ["*"]
 
 jobs:
-  test:
+  tests:
     runs-on: ubuntu-latest
     steps:
       - name: Setup repo
@@ -19,3 +19,5 @@ jobs:
         run: deno fmt --check
       - name: Types check
         run: deno check .
+      - name: Testing
+        run: deno test tests/
