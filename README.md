@@ -54,7 +54,8 @@ app.post("/hello", async (req) => {
 
 // With params
 app.get("/hello/:id", (_req, matchedRoute) => {
-  const id = matchedRoute?.pathname.groups.id;
+  const routePattern = matchedRoute.exec(req.url)
+  const id = routePattern?.pathname.groups.id;
   const body = { id };
 
   return new Response(JSON.stringify(body), {

@@ -59,8 +59,10 @@ app.post("/hello", async (req) => {
 });
 
 // get id params from url
-app.get("/hello/:id", (_req, matchedRoute) => {
-  const id = matchedRoute?.pathname.groups.id;
+app.get("/hello/:id", (req, matchedRoute) => {
+  const routePattern = matchedRoute.exec(req.url);
+  const id = routePattern?.pathname.groups.id;
+
   const body = { id };
 
   return new Response(JSON.stringify(body), {
@@ -74,10 +76,11 @@ app.get("/hello/:id", (_req, matchedRoute) => {
 // from post request
 app.post("/hello/:id", async (req, matchedRoute) => {
   let body;
+  const id = matchedRoute.exec(req.url)?.pathname.groups.id;
 
   try {
     body = await req.json();
-    body.idParam = matchedRoute?.pathname.groups.id;
+    body.idParam = id;
     return new Response(JSON.stringify(body), {
       status: 200,
       headers: {

@@ -147,7 +147,8 @@ export class Router {
             () => executeMiddleware(index + 1),
           );
         } else {
-          return match.handler(request, match.pattern.exec(request.url));
+          //return match.handler(request, match.pattern.exec(request.url));
+          return match.handler(request, match.pattern);
         }
       };
 
