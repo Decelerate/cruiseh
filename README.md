@@ -35,6 +35,7 @@ Here's an example of how to use the Router class with deno serve :
 ```ts
 // server.ts
 import { Router } from '@decelerate/cruiseh';
+import { getUrlParams } from "@decelerate/cruiseh/utils/getUrlParams";
 
 const app = new Router();
 
@@ -54,9 +55,14 @@ app.post("/hello", async (req) => {
 
 // With params
 app.get("/hello/:id", (_req, matchedRoute) => {
-  const routePattern = matchedRoute.exec(req.url)
-  const id = routePattern?.pathname.groups.id;
-  const body = { id };
+  // If you don't want to use utils function you can do the same thing manually
+  //const routePattern = matchedRoute.exec(req.url);
+  //const params = routePattern?.pathname.groups;
+
+  // For more secure way, you may need to try/catch your operations
+  const params = getUrlParams<{ id: string }>(matchedRoute, req.url);
+
+  const body = { id: params.id };
 
   return new Response(JSON.stringify(body), {
     status: 200,

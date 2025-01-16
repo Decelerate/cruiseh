@@ -18,6 +18,6 @@ jobs:
       - name: Fmt check
         run: deno fmt --check
       - name: Types check
-        run: deno check .
+        run: deno check router.ts types.ts utils/
       - name: Testing
-        run: deno test tests/
+        run: deno test .

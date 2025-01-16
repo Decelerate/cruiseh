@@ -1,4 +1,5 @@
 import { Router } from "@decelerate/cruiseh";
+import { getUrlParams } from "@decelerate/cruiseh/utils/getUrlParams";
 
 const app = new Router();
 
@@ -60,10 +61,14 @@ app.post("/hello", async (req) => {
 
 // get id params from url
 app.get("/hello/:id", (req, matchedRoute) => {
-  const routePattern = matchedRoute.exec(req.url);
-  const id = routePattern?.pathname.groups.id;
+  // If you don't want to use utils function you can do the same thing manually
+  //const routePattern = matchedRoute.exec(req.url);
+  //const params = routePattern?.pathname.groups;
 
-  const body = { id };
+  // For more secure way, you may need to try/catch your operations
+  const params = getUrlParams<{ id: string }>(matchedRoute, req.url);
+
+  const body = { id: params.id };
 
   return new Response(JSON.stringify(body), {
     status: 200,
@@ -76,7 +81,7 @@ app.get("/hello/:id", (req, matchedRoute) => {
 // from post request
 app.post("/hello/:id", async (req, matchedRoute) => {
   let body;
-  const id = matchedRoute.exec(req.url)?.pathname.groups.id;
+  const { id } = getUrlParams<{ id: string }>(matchedRoute, req.url);
 
   try {
     body = await req.json();
