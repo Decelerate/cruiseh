@@ -1,7 +1,7 @@
 # Cruiseh
 [![jsr.io/@decelerate/cruiseh](https://jsr.io/badges/@decelerate/cruiseh)](https://jsr.io/@decelerate/cruiseh)
 [![jsr.io/@decelerate/cruiseh score](https://jsr.io/badges/@decelerate/cruiseh/score)](https://jsr.io/@decelerate/cruiseh)
-[![cruiseh ci](https://github.com/decelerate/cruiseh/actions/workflows/test.yml/badge.svg?branch=main)](https://github.com/decelerate/cruiseh)
+[![cruiseh ci](https://github.com/decelerate/cruiseh/actions/workflows/tests.yml/badge.svg?branch=main)](https://github.com/decelerate/cruiseh)
 
 > [!CAUTION]
 > Only work with deno runtime for the moment
