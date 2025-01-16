@@ -1,16 +1,18 @@
 # Cruiseh
 [![jsr.io/@decelerate/cruiseh](https://jsr.io/badges/@decelerate/cruiseh)](https://jsr.io/@decelerate/cruiseh)
 [![jsr.io/@decelerate/cruiseh score](https://jsr.io/badges/@decelerate/cruiseh/score)](https://jsr.io/@decelerate/cruiseh)
+[![cruiseh ci](https://github.com/decelerate/cruiseh/actions/workflows/test.yml/badge.svg?branch=main)](https://github.com/decelerate/cruiseh)
+
+> [!CAUTION]
+> Only work with deno runtime for the moment
+>
+> Don't use it in production until 1.0.0 release
 
 A simple TypeScript router class for handling HTTP routes, inspired by Express.js. This router supports GET, POST, PUT, and DELETE methods.
 
 This library is made for "training" purpose but you can use it for small project.
 
 Feel free to make a Pull request or issue if you want additional features, we don't bite ! 🧛
-
-> [!WARNING]
-> Only work with deno runtime
-
 
 ## Features
 
