@@ -15,16 +15,12 @@
       "deno.json",
       "index.ts",
       "router.ts",
-      "types.ts"
+      "types.ts",
+      "utils.ts"
     ]
   },
   "tasks": {
-    "doc:gen": "deno doc --html --name=\"Cruiseh API\" ./index.ts",
-    "doc:dev": "deno run -A docs-dev-server.ts",
-    "doc:lint": "deno doc --lint index.ts",
-    "fmt": "deno fmt",
-    "fmt:check": "deno fmt --check",
-    "check": "deno check ."
+    "check": "deno check router.ts types.ts utils/"
   },
   "fmt": {
     "exclude": [
