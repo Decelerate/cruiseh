@@ -5,7 +5,8 @@
   "exports": {
     ".": "./index.ts",
     "./router": "./router.ts",
-    "./types": "./types.ts"
+    "./types": "./types.ts",
+    "./utils/getUrlParams": "./utils/getUrlParams.ts"
   },
   "publish": {
     "include": [
@@ -16,7 +17,7 @@
       "index.ts",
       "router.ts",
       "types.ts",
-      "utils.ts"
+      "./utils/getUrlParams.ts"
     ]
   },
   "tasks": {

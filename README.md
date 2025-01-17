@@ -54,7 +54,7 @@ app.post("/hello", async (req) => {
 });
 
 // With params
-app.get("/hello/:id", (_req, matchedRoute) => {
+app.get("/hello/:id", (req, matchedRoute) => {
   // If you don't want to use utils function you can do the same thing manually
   //const routePattern = matchedRoute.exec(req.url);
   //const params = routePattern?.pathname.groups;
