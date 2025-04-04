@@ -39,6 +39,7 @@ export type Route = {
  */
 export type MiddlewareOptions = {
   path?: string;
+  exclude?: string[];
   method?: HttpMethods | keyof typeof HttpMethods;
 };
 

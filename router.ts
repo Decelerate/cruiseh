@@ -132,16 +132,25 @@ export class Router {
     if (match) {
       // Get all middlewares that match the path
       const middlewares = this.#middlewares.filter((middleware) => {
-        if (!middleware.options?.path) return true;
+        if (!middleware.options?.path && !middleware.options?.exclude) {
+          return true;
+        }
 
-        const patternMatch = match.pattern.pathname.startsWith(
-          middleware.options.path,
-        );
+        const patternMatch = middleware.options.path
+          ? match.pattern.pathname.startsWith(middleware.options.path)
+          : true;
+
+        const excludeMatch = middleware.options.exclude
+          ? middleware.options.exclude.some((exclude) =>
+            match.pattern.pathname.startsWith(exclude)
+          )
+          : false;
+
         const methodMatch = middleware.options.method
           ? middleware.options.method === request.method
           : true;
 
-        return patternMatch && methodMatch;
+        return patternMatch && methodMatch && !excludeMatch;
       });
 
       const executeMiddleware = (

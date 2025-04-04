@@ -119,6 +119,31 @@ Deno.test("Router should execute middleware", async () => {
   assertEquals(response.status, 200);
 });
 
+Deno.test("Router should not execute middleware on /api/test", async () => {
+  const router = new Router();
+
+  let middlewareExecuted = false;
+
+  router.use(
+    (_, next) => {
+      middlewareExecuted = true;
+      return next();
+    },
+    {
+      exclude: ["/api/test"],
+    },
+  );
+
+  router.get("/api/test", () => new Response("ApiTest"));
+
+  const request = createFakeRequest("http://localhost/api/test", "GET");
+  const response = await router.handler(request);
+
+  assertEquals(middlewareExecuted, false);
+  assertEquals(await response.text(), "ApiTest");
+  assertEquals(response.status, 200);
+});
+
 Deno.test("Router should return 404 for unknown routes", async () => {
   const router = new Router();
 
