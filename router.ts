@@ -44,6 +44,11 @@ export class Router {
    */
   #middlewares: RouterMiddleware[] = [];
 
+  all(path: string, handler: Handler) {
+    // We'll use a special method identifier for "ALL" routes
+    this.#addRoute(path, "ALL" as HttpMethods, handler);
+  }
+
   /**
    * Registers a middleware function to be executed before route handlers.
    * @param {Middleware} middleware - The middleware function to execute
@@ -119,7 +124,9 @@ export class Router {
   handler(request: Request): Response | Promise<Response> {
     const match = this.#routes.filter(
       (route) =>
-        route.method === request.method && route.pattern.exec(request.url),
+        (route.method === request.method ||
+          route.method === ("ALL" as HttpMethods)) &&
+        route.pattern.exec(request.url),
     )[0];
 
     if (match) {

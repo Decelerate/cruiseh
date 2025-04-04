@@ -65,14 +65,27 @@ Deno.test("Router should handle DELETE requests", async () => {
     return new Response("Delete confirmed");
   });
 
-  const request = createFakeRequest(
-    "http://localhost/hello",
-    "DELETE",
-    {},
-  );
+  const request = createFakeRequest("http://localhost/hello", "DELETE", {});
   const response = await router.handler(request);
 
   assertEquals(await response.text(), "Delete confirmed");
+  assertEquals(response.status, 200);
+});
+
+Deno.test("Router should handle ALL requests", async () => {
+  const router = new Router();
+
+  router.all("/api/*", (_) => {
+    return new Response("HandleApiResponse");
+  });
+
+  const request = createFakeRequest(
+    "http://localhost/api/random/endpoint",
+    "GET",
+  );
+  const response = await router.handler(request);
+
+  assertEquals(await response.text(), "HandleApiResponse");
   assertEquals(response.status, 200);
 });
 
